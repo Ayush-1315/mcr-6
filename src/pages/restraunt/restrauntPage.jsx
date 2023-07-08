@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router";
 
 import { restaurantsData } from "../../data";
 import restrauntCSS from "./restraunt.module.css";
+import { Review } from "../../components/reviewCard/reviewCard";
 export const RestrauntPage = () => {
   const { rID } = useParams();
   const navigate=useNavigate();
@@ -16,8 +17,8 @@ export const RestrauntPage = () => {
         <div>
           <h1>{restaurant?.name}</h1>
           <p>
-            {restaurant?.menu?.map(({ name }) => (
-              <span>{name},</span>
+            {restaurant?.menu?.map(({ name },index) => (
+              <span key={index}>{name},</span>
             ))}
           </p>
           <p>{restaurant?.address}</p>
@@ -26,6 +27,10 @@ export const RestrauntPage = () => {
         <div>
           <button>Add Review</button>
         </div>
+      </div>
+      <div className={restrauntCSS.ratingsBox}>
+        <h2>Reviews</h2>
+        {restaurant?.ratings?.map((rating,index)=><Review data={rating} key={index}/>)}
       </div>
     </>
   );
