@@ -1,0 +1,33 @@
+.nav{
+    padding:1rem;
+    text-align: left;
+    font-weight: bolder;
+    color:purple;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60vw;
+    margin: 0 auto;
+    text-align: left;
+    border-bottom: 2px solid grey;
+    padding-bottom:1rem;
+}
+.header button{
+    font-weight: 700;
+    border:none;
+    padding:0.5rem;
+    margin: auto;
+    color:white;
+    background-color: #EE4F5E;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.header p{
+    color:grey
+}
+.header>div:first-child p{
+margin: 0;
+text-align: left;
+}

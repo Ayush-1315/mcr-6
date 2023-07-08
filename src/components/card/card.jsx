@@ -1,9 +1,11 @@
+import {useNavigate} from "react-router-dom";
 import cardCSS from "./card.module.css";
 export const Card = ({ data }) => {
-    console.log(data)
-  const {name,imgSrc,price,qty,restraunt}=data;
+  const {name,imgSrc,price,qty,restraunt,id}=data;
+ const navigate=useNavigate();
+ const clickHandler=()=>navigate(`restraunt/${id}`);
   return (
-    <div className={cardCSS.card}>
+    <div className={cardCSS.card} onClick={clickHandler}>
       <div
         className={cardCSS.cardHead}
         style={{

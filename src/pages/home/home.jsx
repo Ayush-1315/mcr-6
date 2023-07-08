@@ -15,7 +15,7 @@ export const Home=()=>{
      {state.map((restraunt,index)=><div key={index} className={homeCSS.objectContainer}>
         <h2>Dishes by {restraunt?.name}</h2>
         <div className={homeCSS.container}>
-        {restraunt?.menu.map((item,index)=><Card data={{...item,restraunt:restraunt?.name}} key={index}/>)}
+        {restraunt?.menu.map((item,index)=><Card data={{...item,restraunt:restraunt?.name,id:restraunt.id}} key={index}/>)}
         </div>
      </div>)}
     </>}
