@@ -1,0 +1,55 @@
+.wrapper{
+    background-color: transparent;
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+}
+.container{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #F1515F;
+    width: 40vw;
+    color:white;
+    padding:0.5rem;
+    border-radius: 10px;
+}
+.container> h2{
+    padding-bottom: 1rem;
+    width: fit-content;
+    margin: 0 auto;
+    border-bottom: 2px solid white
+}
+.closeBtn{
+    position: absolute;
+    top:0;
+    left:0;
+    margin:0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.closeBtn span {
+    border-radius: 50%;
+}
+.closeBtn :hover{
+    background-color: #9f1925;
+}
+.commentBox div{
+    display: flex;
+    margin: 1rem auto;
+    width: 60%;
+    justify-content: space-between;
+}
+.commentBox input,.commentBox select{
+    border-radius: 5px;
+    border:1px solid grey;
+    padding:0.3rem;
+}
+.commentBox button{
+    padding:0.5rem 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}

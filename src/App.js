@@ -1,7 +1,8 @@
 import { Routes,Route } from 'react-router';
-import './App.css';
+
 import { Home } from './pages/home/home';
 import { RestrauntPage } from './pages/restraunt/restrauntPage';
+import './App.css';
 
 function App() {
   return (

@@ -4,7 +4,6 @@ import { useData } from "../../context/dataContext";
 import { Card } from "../../components/card/card";
 export const Home=()=>{
     const {state,dispatch}=useData();
-    console.log(state);
     return <>
     <h1>Food Ordering App</h1>
     <h2>Select Your Cuisine:</h2>
@@ -12,7 +11,7 @@ export const Home=()=>{
         {cuisineData.map((cusine,index)=><button key={index} onClick={()=>dispatch({type:'SET_CUSINE',payload:cusine.id})}>{cusine.name}</button>)}
     </div>
     {state && <>
-     {state.map((restraunt,index)=><div key={index} className={homeCSS.objectContainer}>
+     {state?.showData.map((restraunt,index)=><div key={index} className={homeCSS.objectContainer}>
         <h2>Dishes by {restraunt?.name}</h2>
         <div className={homeCSS.container}>
         {restraunt?.menu.map((item,index)=><Card data={{...item,restraunt:restraunt?.name,id:restraunt.id}} key={index}/>)}

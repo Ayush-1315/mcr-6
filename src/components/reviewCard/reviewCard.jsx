@@ -1,6 +1,5 @@
 import reviewCSS from "./reviewCard.module.css";
 export const Review = ({ data }) => {
-  console.log(data);
   return (
     <div className={reviewCSS.container}>
       <div className={reviewCSS.profile}>

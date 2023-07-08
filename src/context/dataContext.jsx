@@ -4,7 +4,10 @@ const DataContext=createContext();
 
 export const DataProvider=({children})=>{
     const [state,dispatch]=useReducer(dataReducer,initialData);
-    return <DataContext.Provider value={{state,dispatch}}>
+    const addComment=(id,commentData)=>{
+        dispatch({type:"ADD_COMMENT",payload:{id,commentData}});
+    }
+    return <DataContext.Provider value={{state,dispatch,addComment}}>
         {children}
     </DataContext.Provider>
 }

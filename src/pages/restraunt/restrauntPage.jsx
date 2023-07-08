@@ -1,18 +1,26 @@
 import { useNavigate, useParams } from "react-router";
 
-import { restaurantsData } from "../../data";
 import restrauntCSS from "./restraunt.module.css";
 import { Review } from "../../components/reviewCard/reviewCard";
+import { useState } from "react";
+import { CommentModal } from "../../components/commentModal/commentModal";
+import { useData } from "../../context/dataContext";
 export const RestrauntPage = () => {
   const { rID } = useParams();
+  const {addComment,state}=useData();
+  const [showCommentBox,setShowCommentBox]=useState(false);
   const navigate=useNavigate();
-  const restaurant = restaurantsData.find(({ id }) => id === Number(rID));
-  console.log(restaurant);
+  const restaurant = state.allData.find(({ id }) => id === Number(rID));
+  const onSubmit=(data)=>{
+    addComment(Number(rID),{revName:"Ayush",pp:"https://shorturl.at/cmFHN",...data});
+    setShowCommentBox(false);
+  }
   return (
     <>
       <nav className={restrauntCSS.nav}>
         <span className="material-symbols-outlined" onClick={()=>navigate("/")}>arrow_back</span>
       </nav>
+        {showCommentBox && <CommentModal onClose={()=>setShowCommentBox(false)} onSubmit={onSubmit}/>}
       <div className={restrauntCSS.header}>
         <div>
           <h1>{restaurant?.name}</h1>
@@ -25,7 +33,7 @@ export const RestrauntPage = () => {
           <p>Average Rating: {restaurant?.averageRating}</p>
         </div>
         <div>
-          <button>Add Review</button>
+          <button onClick={()=>setShowCommentBox(true)}>Add Review</button>
         </div>
       </div>
       <div className={restrauntCSS.ratingsBox}>
