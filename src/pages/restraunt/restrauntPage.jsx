@@ -30,7 +30,7 @@ export const RestrauntPage = () => {
             ))}
           </p>
           <p>{restaurant?.address}</p>
-          <p>Average Rating: {restaurant?.averageRating}</p>
+          <p>Average Rating: {(restaurant?.ratings.reduce((avg,{rating})=>avg+=Number(rating),0)/restaurant?.ratings.length).toFixed(2)}</p>
         </div>
         <div>
           <button onClick={()=>setShowCommentBox(true)}>Add Review</button>

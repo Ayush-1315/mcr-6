@@ -53,3 +53,9 @@
     font-weight: 700;
     cursor: pointer;
 }
+.warning{
+    color: yellow;
+    text-align: right;
+    width: 60%;
+    margin: auto;
+}

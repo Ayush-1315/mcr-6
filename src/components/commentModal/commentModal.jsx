@@ -18,9 +18,9 @@ export const CommentModal = ({ onClose,onSubmit }) => {
        const sendData=Object.keys(formValidator).reduce((acc,curr)=>!formValidator[curr]?false:acc,true)
        if(sendData){
         onSubmit(formData)
+        setFormData({rating:"",comment:""});
+        setFormValidator({rating:false,comment:false})
        }
-       setFormData({rating:"",comment:""});
-       setFormValidator({rating:false,comment:false})
     }
   }
   return (
@@ -44,10 +44,12 @@ export const CommentModal = ({ onClose,onSubmit }) => {
               <option value="5">5</option>
             </select>
           </div>
+            {!formValidator?.rating &&<p className={comment.warning}>Provide a rating</p>}
           <div>
             <label htmlFor="comment">Comment</label>
             <input type="text"id="comment" onChange={e=>changeHandler("comment",e.target.value)} value={formData.comment} placeholder="Your Comment"/>
           </div>
+          {!formValidator?.comment &&<p className={comment.warning}>Provide a Comment</p>}
           <button onClick={submitHandler}>Submit</button>
         </div>
       </div>
