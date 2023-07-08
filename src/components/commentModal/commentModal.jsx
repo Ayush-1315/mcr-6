@@ -1,28 +1,34 @@
 import { useState } from "react";
 import comment from "./comment.module.css";
-export const CommentModal = ({ onClose,onSubmit }) => {
+export const CommentModal = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     rating: "",
     comment: "",
   });
-  const [formValidator,setFormValidator]=useState({
-      rating:false,
-      comment:false
-    })
-  const changeHandler=(type,value)=>{
-    setFormData(prev=>({...prev,[type]:value}))
-    setFormValidator(prev=>({...prev,[type]:value!==0 && value!==""}))
-  }
-  const submitHandler=()=>{
-    if(typeof(onSubmit)==="function"){
-       const sendData=Object.keys(formValidator).reduce((acc,curr)=>!formValidator[curr]?false:acc,true)
-       if(sendData){
-        onSubmit(formData)
-        setFormData({rating:"",comment:""});
-        setFormValidator({rating:false,comment:false})
-       }
+  const [formValidator, setFormValidator] = useState({
+    rating: false,
+    comment: false,
+  });
+  const changeHandler = (type, value) => {
+    setFormData((prev) => ({ ...prev, [type]: value }));
+    setFormValidator((prev) => ({
+      ...prev,
+      [type]: value !== 0 && value !== "",
+    }));
+  };
+  const submitHandler = () => {
+    if (typeof onSubmit === "function") {
+      const sendData = Object.keys(formValidator).reduce(
+        (acc, curr) => (!formValidator[curr] ? false : acc),
+        true
+      );
+      if (sendData) {
+        onSubmit(formData);
+        setFormData({ rating: "", comment: "" });
+        setFormValidator({ rating: false, comment: false });
+      }
     }
-  }
+  };
   return (
     <div className={comment.wrapper}>
       <div className={comment.container}>
@@ -33,7 +39,12 @@ export const CommentModal = ({ onClose,onSubmit }) => {
         <div className={comment.commentBox}>
           <div>
             <label htmlFor="rating">Rating</label>
-            <select name="rating" id="rating" value={formData.rating===""? 0: formData.rating} onChange={e=>changeHandler("rating",e.target.value)}>
+            <select
+              name="rating"
+              id="rating"
+              value={formData.rating === "" ? 0 : formData.rating}
+              onChange={(e) => changeHandler("rating", e.target.value)}
+            >
               <option value="0" disabled={true}>
                 Select Rating
               </option>
@@ -44,12 +55,22 @@ export const CommentModal = ({ onClose,onSubmit }) => {
               <option value="5">5</option>
             </select>
           </div>
-            {!formValidator?.rating &&<p className={comment.warning}>Provide a rating</p>}
+          {!formValidator?.rating && (
+            <p className={comment.warning}>Provide a rating</p>
+          )}
           <div>
             <label htmlFor="comment">Comment</label>
-            <input type="text"id="comment" onChange={e=>changeHandler("comment",e.target.value)} value={formData.comment} placeholder="Your Comment"/>
+            <input
+              type="text"
+              id="comment"
+              onChange={(e) => changeHandler("comment", e.target.value)}
+              value={formData.comment}
+              placeholder="Your Comment"
+            />
           </div>
-          {!formValidator?.comment &&<p className={comment.warning}>Provide a Comment</p>}
+          {!formValidator?.comment && (
+            <p className={comment.warning}>Provide a Comment</p>
+          )}
           <button onClick={submitHandler}>Submit</button>
         </div>
       </div>

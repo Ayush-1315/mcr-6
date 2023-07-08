@@ -12,7 +12,8 @@ export const Review = ({ data }) => {
         </div>
         <span className={reviewCSS.rating}>
           {" "}
-          {data?.rating}<span className="material-symbols-outlined">grade</span>
+          {data?.rating}
+          <span className="material-symbols-outlined">grade</span>
         </span>
       </div>
       <p>{data?.comment}</p>
